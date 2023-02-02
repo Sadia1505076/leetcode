@@ -31,12 +31,8 @@ public:
             TreeNode* front = bfs_queue.front();
             if (front != NULL) {
                 nodeValue.push_back(front -> val);
-                if (front -> left != NULL) {
-                    bfs_queue.push(front -> left);
-                }
-                if (front -> right != NULL) {
-                    bfs_queue.push(front -> right);
-                }
+                if (front -> left != NULL) bfs_queue.push(front -> left);
+                if (front -> right != NULL) bfs_queue.push(front -> right);
                 bfs_queue.pop();
                 if (!bfs_queue.empty() && bfs_queue.front() != NULL && bfs_queue.front() -> val == -9999) {
                     traversal.push_back(nodeValue);
