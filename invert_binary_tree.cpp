@@ -26,23 +26,11 @@ public:
             TreeNode* front = visited.front();
             visited.pop();
             if (front != NULL) {
-                if (front -> left != NULL && front -> right != NULL) {
-                    TreeNode* temp = front->left;
-                    front->left = front -> right;
-                    front -> right = temp;
-                    visited.push(front -> left);
-                    visited.push(front -> right);
-                }
-                else if (front -> left == NULL && front -> right != NULL) {
-                    front -> left = front -> right;
-                    front -> right = NULL;
-                    visited.push(front->left);
-                }
-                else {
-                    front -> right = front -> left;
-                    front->left = NULL;
-                    visited.push(front->right);
-                }
+                TreeNode* temp = front->left;
+                front->left = front -> right;
+                front -> right = temp;
+                if (front -> left != NULL) visited.push(front -> left);
+                if (front -> right != NULL) visited.push(front -> right);
             }
         }
         return root;
