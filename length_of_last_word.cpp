@@ -10,7 +10,7 @@
 
 
 
-
+// crap solution
 class Solution {
 public:
     int lengthOfLastWord(string s) {
@@ -35,5 +35,19 @@ public:
         else {
             return word.length();
         }
+    }
+};
+
+// better solution
+class Solution {
+public:
+    int lengthOfLastWord(string s) {
+        if (s == "") return 0;
+        int count = 0;
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if (s[i] != ' ') count++;
+            else if (count > 0) return count;
+        }
+        return count;
     }
 };
