@@ -30,10 +30,6 @@ public:
                 } 
             }
         }
-        for (int i = 0; i < flowerbed.size(); i++) {    
-            cout<<"flowerbed is:"<<flowerbed[i]<<endl;
-        }
-
         if (n <= 0) return true;
         return false;
     }
