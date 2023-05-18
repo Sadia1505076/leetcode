@@ -14,20 +14,20 @@ class Solution {
 public:
     bool canPlaceFlowers(vector<int>& flowerbed, int n) {
         int size = flowerbed.size();
-        if (n == 0) return true;
+        set <int> forbiddenPlots;
         for (int i = 0; i < size; i++) {
-            if (size == 1) {
-                if (flowerbed[0] == 0 && n > 1) return false;
-                else if (flowerbed[0] == 0 && n == 1) return true;
+            if (flowerbed[i] == 1) {
+                forbiddenPlots.insert(i);
+                if (i - 1 >= 0) forbiddenPlots.insert(i - 1);
+                if (i + 1 < size) forbiddenPlots.insert(i + 1);
             }
-            else {
-                if ((i == 0 && flowerbed[1] == 0 && flowerbed[0] == 0) ||
-                (i == size - 1 && flowerbed[i - 1] == 0 && flowerbed[i] == 0) ||
-                (size > 2 && i >= 1 && flowerbed[i - 1] == 0 && flowerbed[i] == 0 && flowerbed[i + 1] == 0)
-                ) {
-                    flowerbed[i] = 1;
-                    n -= 1;
-                } 
+        }
+        for (int i = 0; i < size; i++) {
+            auto it = forbiddenPlots.find(i);
+            if (it == forbiddenPlots.end()) {
+                flowerbed[i] = 1;
+                n -= 1;
+                if (i + 1 < size) forbiddenPlots.insert(i + 1);
             }
         }
         if (n <= 0) return true;
